@@ -3,12 +3,14 @@ defmodule SimpleAuth.Repo.Migrations.CreateUser do
 
   def change do
     create table(:users) do
-      add :email, :string
+      add :email, :string, null: false
       add :name, :string
       add :password_has, :string
       add :is_admin, :boolean, default: false, null: false
 
       timestamps()
     end
+
+    create unique_index(:users, [:email])
   end
 end
