@@ -19,7 +19,7 @@ defmodule SimpleAuth.User do
                               #a: las palabras de la lista son de tipo atom
   @optional_fields ~w(name is_admin)a
 
-  #Ayuda sobre esto en https://hexdocs.pm/ecto/Ecto.Changeset.html
+  #https://hexdocs.pm/ecto/Ecto.Changeset.html
   def changeset(struct, params \\ %{}) do
     struct
     # |> This operator introduces the expression on the left-hand side as the first argument to the function call on the right-hand side.
@@ -33,7 +33,7 @@ defmodule SimpleAuth.User do
   def registration_changeset(struct, params) do
     struct
     |> changeset(params)
-    |> chast(params, ~w(password)a, [])
+    |> cast(params, ~w(password)a, [])
     |> validate_length(:password, min: 6, max: 100)
     |> hash_password
   end
